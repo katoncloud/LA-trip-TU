@@ -13,6 +13,8 @@
             --accent-yellow: #E6AF2E; /* 芥末黃 */
             --text-main: #2C2C2C;     /* 深灰 */
             --card-shadow: 0 8px 20px rgba(128, 0, 0, 0.1);
+            --alert-bg: #fff5f5;      /* 警告背景色 */
+            --alert-border: #c53030;  /* 警告邊框色 */
         }
 
         /* --- 基礎設定 --- */
@@ -32,7 +34,7 @@
         header {
             position: relative;
             height: 60vh;
-            background-image: url('https://images.unsplash.com/photo-1534050359320-02900022671e?q=80&w=2000&auto=format&fit=crop'); /* Hollywood Placeholder */
+            background-image: url('https://images.unsplash.com/photo-1534050359320-02900022671e?q=80&w=2000&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
             display: flex;
@@ -60,12 +62,12 @@
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 6vw; /* 隨螢幕縮放 */
+            font-size: 6vw;
             color: rgba(255, 255, 255, 0.95);
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 4px;
-            white-space: nowrap; /* 強制不換行 (桌面版) */
+            white-space: nowrap;
             text-shadow: 2px 2px 0px var(--primary-red);
         }
 
@@ -126,9 +128,9 @@
             margin-bottom: 20px;
         }
 
-        /* --- 列表樣式 --- */
+        /* --- 列表與重點樣式 --- */
         ul { list-style: none; padding: 0; }
-        li { margin-bottom: 25px; padding-left: 5px; border-left: 3px solid #eee; padding-left: 15px; }
+        li { margin-bottom: 25px; padding-left: 15px; border-left: 3px solid #eee; }
 
         .highlight {
             font-weight: 700;
@@ -138,9 +140,8 @@
             margin-bottom: 5px;
         }
 
-        /* --- 按鈕設計 --- */
+        /* --- 按鈕 --- */
         .btn-group { margin-top: 10px; }
-        
         .btn {
             display: inline-block;
             padding: 10px 18px;
@@ -151,24 +152,11 @@
             margin-bottom: 5px;
             text-align: center;
         }
-
-        /* 地圖按鈕 (灰白) */
-        .btn-map {
-            background-color: #f0f0f0;
-            color: #555;
-            border: 1px solid #ccc;
-        }
+        .btn-map { background-color: #f0f0f0; color: #555; border: 1px solid #ccc; }
         .btn-map:hover { background-color: #e0e0e0; color: #000; }
-
-        /* 訂位按鈕 (黃色) */
-        .btn-book {
-            background-color: var(--accent-yellow);
-            color: #333;
-            border: 1px solid #d4a017;
-        }
+        .btn-book { background-color: var(--accent-yellow); color: #333; border: 1px solid #d4a017; }
         .btn-book:hover { background-color: #FFC107; }
 
-        /* 提醒區塊 */
         .note {
             background-color: #FFF8E1;
             padding: 15px;
@@ -179,6 +167,80 @@
             margin-top: 10px;
         }
 
+        /* --- 新增：注意事項區塊樣式 --- */
+        .tips-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            text-align: center;
+            color: var(--primary-red);
+            margin-top: 60px;
+            margin-bottom: 30px;
+            border-top: 2px solid #ddd;
+            padding-top: 40px;
+        }
+
+        .tip-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tip-card h3 {
+            margin-top: 0;
+            color: var(--primary-red);
+            border-bottom: 2px solid var(--accent-yellow);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .tip-card strong {
+            color: #000;
+            background-color: #FFF8E1;
+            padding: 0 5px;
+        }
+
+        /* 顏色標籤 (路邊停車用) */
+        .color-tag {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-right: 8px;
+            border: 1px solid #ccc;
+        }
+        .bg-red { background-color: #ff4d4d; }
+        .bg-white { background-color: #ffffff; }
+        .bg-green { background-color: #4caf50; }
+        .bg-blue { background-color: #2196f3; }
+
+        /* 警告區塊 (防盜) */
+        .alert-box {
+            background-color: var(--alert-bg);
+            border: 2px solid var(--alert-border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .alert-box h3 { color: var(--alert-border); margin-top: 0; }
+
+        /* 小費表格化 */
+        .tipping-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .tipping-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .tipping-item:last-child { border-bottom: none; }
+
         /* --- Footer --- */
         footer {
             text-align: center;
@@ -188,12 +250,12 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- 手機版調整 --- */
+        /* --- RWD --- */
         @media (max-width: 768px) {
             h1 { font-size: 2.8rem; white-space: normal; line-height: 1.2; }
             .day-card { padding: 20px; }
             body { font-size: 17px; }
-            .btn { width: 100%; box-sizing: border-box; margin-bottom: 10px; } /* 按鈕在手機上全寬 */
+            .btn { width: 100%; box-sizing: border-box; }
         }
     </style>
 </head>
@@ -219,25 +281,12 @@
             <span class="date-badge">01/22 (四)</span>
             <div class="day-title">Day 1: 抵達與初見洛杉磯</div>
             <ul>
-                <li>
-                    <span class="highlight">行程概覽</span>
-                    抵達 ONT 機場 ➝ 取車 ➝ 前往 K-Town 飯店 check-in。
+                <li><span class="highlight">行程概覽</span>抵達 ONT 機場 ➝ 取車 ➝ 前往 K-Town 飯店 check-in。</li>
+                <li><span class="highlight">⚠️ 注意事項</span>取車事項待確認。出發吃晚餐車程約一小時。</li>
+                <li><span class="highlight">晚餐：In-N-Out Burger</span>必點隱藏菜單: Double-Double Animal Style
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/g35GwZzvbksX3Huz8?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a></div>
                 </li>
-                <li>
-                    <span class="highlight">⚠️ 注意事項</span>
-                    取車事項待確認。出發吃晚餐車程約一小時。
-                </li>
-                <li>
-                    <span class="highlight">晚餐：In-N-Out Burger</span>
-                    必點隱藏菜單: Double-Double Animal Style
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/g35GwZzvbksX3Huz8?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a>
-                    </div>
-                </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    Glamorous Ktown Boutique Residence
-                </li>
+                <li><span class="highlight">住宿</span>Glamorous Ktown Boutique Residence</li>
             </ul>
         </div>
 
@@ -246,26 +295,13 @@
             <div class="day-title">Day 2: 全日好萊塢環球影城</div>
             <ul>
                 <li>
-                    <div class="note">
-                        <strong>Klook 已確認訂票</strong><br>
-                        開園時間 10:00-18:00。<br>
-                        從飯店出發約 20 分鐘，預計 <strong>08:30 出門</strong>。
-                    </div>
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/7tnz7uUWH53TVwnW7?g_st=ic" target="_blank" class="btn btn-map">📍 環球影城導航</a>
-                    </div>
+                    <div class="note"><strong>Klook 已確認訂票</strong><br>開園時間 10:00-18:00。<br>從飯店出發約 20 分鐘，預計 <strong>08:30 出門</strong>。</div>
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/7tnz7uUWH53TVwnW7?g_st=ic" target="_blank" class="btn btn-map">📍 環球影城導航</a></div>
                 </li>
-                <li>
-                    <span class="highlight">晚餐：Sun Nong Dan (回 K-Town)</span>
-                    ※ 無訂位，需排隊
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/QQEQPQ8bEMt3rEK89?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a>
-                    </div>
+                <li><span class="highlight">晚餐：Sun Nong Dan (回 K-Town)</span>※ 無訂位，需排隊
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/QQEQPQ8bEMt3rEK89?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a></div>
                 </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    Glamorous Ktown Boutique Residence
-                </li>
+                <li><span class="highlight">住宿</span>Glamorous Ktown Boutique Residence</li>
             </ul>
         </div>
 
@@ -273,31 +309,14 @@
             <span class="date-badge">01/24 (六)</span>
             <div class="day-title">Day 3: Downtown LA</div>
             <ul>
-                <li>
-                    <span class="highlight">早午餐：Republique</span>
-                    8:30 開門 (無訂位，需提早排隊)。飯店出發約 12 mins。<br>
-                    <small>備案: blue jam cafe, the sycamore kitchen</small>
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/JLcnFvoX3BcuA71i6?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a>
-                    </div>
+                <li><span class="highlight">早午餐：Republique</span>8:30 開門 (無訂位，需提早排隊)。飯店出發約 12 mins。<br><small>備案: blue jam cafe, the sycamore kitchen</small>
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/JLcnFvoX3BcuA71i6?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a></div>
                 </li>
-                <li>
-                    <span class="highlight">下午行程</span>
-                    1. Bradbury Building (參觀古老建築) + 樓下喝 Blue Bottle<br>
-                    2. The Last Bookstore<br>
-                    3. Santa Monica & Venice Beach
+                <li><span class="highlight">下午行程</span>1. Bradbury Building (參觀古老建築) + 樓下喝 Blue Bottle<br>2. The Last Bookstore<br>3. Santa Monica & Venice Beach</li>
+                <li><span class="highlight">晚餐：Water Grill 海鮮</span>(無訂位)
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/msCRx51hdUxboZbp8?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a></div>
                 </li>
-                <li>
-                    <span class="highlight">晚餐：Water Grill 海鮮</span>
-                    (無訂位)
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/msCRx51hdUxboZbp8?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a>
-                    </div>
-                </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    Glamorous Ktown Boutique Residence
-                </li>
+                <li><span class="highlight">住宿</span>Glamorous Ktown Boutique Residence</li>
             </ul>
         </div>
 
@@ -305,34 +324,17 @@
             <span class="date-badge">01/25 (日)</span>
             <div class="day-title">Day 4: NBA 朝聖之夜</div>
             <ul>
-                <li>
-                    <span class="highlight">上午/午餐：Farmers Market & The Grove</span>
-                    推薦午餐：Pampas Grill 巴西烤肉
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/9P1beLrKmV3bJHoP7?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a>
-                    </div>
+                <li><span class="highlight">上午/午餐：Farmers Market & The Grove</span>推薦午餐：Pampas Grill 巴西烤肉
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/9P1beLrKmV3bJHoP7?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a></div>
                 </li>
-                <li>
-                    <span class="highlight">下午：LACMA 美術館</span>
-                    拍 Urban Light (燈柱森林)
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/xjbD7fcjwSyMX2fQ8?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a>
-                    </div>
+                <li><span class="highlight">下午：LACMA 美術館</span>拍 Urban Light (燈柱森林)
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/xjbD7fcjwSyMX2fQ8?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a></div>
                 </li>
-                <li>
-                    <span class="highlight">晚上：Intuit Dome 看球賽</span>
-                    <div class="note">
-                        <strong>6:00 開賽，需提前 2 小時抵達</strong><br>
-                        🚗 注意停車與交通
-                    </div>
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/sCTxWZ2mZKUwgzh98?g_st=ic" target="_blank" class="btn btn-map">📍 球場導航</a>
-                    </div>
+                <li><span class="highlight">晚上：Intuit Dome 看球賽</span>
+                    <div class="note"><strong>6:00 開賽，需提前 2 小時抵達</strong><br>🚗 注意停車與交通</div>
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/sCTxWZ2mZKUwgzh98?g_st=ic" target="_blank" class="btn btn-map">📍 球場導航</a></div>
                 </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    Glamorous Ktown Boutique Residence
-                </li>
+                <li><span class="highlight">住宿</span>Glamorous Ktown Boutique Residence</li>
             </ul>
         </div>
 
@@ -340,36 +342,17 @@
             <span class="date-badge">01/26 (一)</span>
             <div class="day-title">Day 5: 移動至好萊塢中心</div>
             <ul>
-                <li>
-                    <span class="highlight">上午</span>
-                    Check-out ➝ 前往 Beverly Hills 逛精品 (車程 20 mins)。
+                <li><span class="highlight">上午</span>Check-out ➝ 前往 Beverly Hills 逛精品 (車程 20 mins)。</li>
+                <li><span class="highlight">午餐：California Pizza Kitchen</span>(無訂位)
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/Kmm4urbdkuk2joSr9?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a></div>
                 </li>
-                <li>
-                    <span class="highlight">午餐：California Pizza Kitchen</span>
-                    (無訂位)
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/Kmm4urbdkuk2joSr9?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a>
-                    </div>
+                <li><span class="highlight">下午 (16:00 Check-in)</span>Walk of Fame, Chinese Theatre, Griffith Observatory 看夜景。<br><small>⚠️ 天文台停車場要先繳費，收據放車前。</small>
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/QGdjNZr1bkFR7eso9?g_st=ic" target="_blank" class="btn btn-map">📍 飯店導航 (Loews)</a></div>
                 </li>
-                <li>
-                    <span class="highlight">下午 (16:00 Check-in)</span>
-                    Walk of Fame, Chinese Theatre, Griffith Observatory 看夜景。<br>
-                    <small>⚠️ 天文台停車場要先繳費，收據放車前。</small>
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/QGdjNZr1bkFR7eso9?g_st=ic" target="_blank" class="btn btn-map">📍 飯店導航 (Loews)</a>
-                    </div>
+                <li><span class="highlight">晚餐：Hard Rock Cafe</span>(無訂位)
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/CiAvX3Yq18xGJbUb7?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a></div>
                 </li>
-                <li>
-                    <span class="highlight">晚餐：Hard Rock Cafe</span>
-                    (無訂位)
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/CiAvX3Yq18xGJbUb7?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a>
-                    </div>
-                </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    Loews Hollywood Hotel
-                </li>
+                <li><span class="highlight">住宿</span>Loews Hollywood Hotel</li>
             </ul>
         </div>
 
@@ -377,27 +360,15 @@
             <span class="date-badge">01/27 (二)</span>
             <div class="day-title">Day 6: 前往拉斯維加斯</div>
             <ul>
-                <li>
-                    <span class="highlight">Road Trip!</span>
-                    上午 Check-out，開車前往 Vegas (4-5hr)。<br>
-                    中途停靠: Mojave National Preserve。
-                </li>
-                <li>
-                    <span class="highlight">晚上 (18:00 Check-in)</span>
-                    Bellagio Fountains (水舞秀) + 室內花園。
-                </li>
-                <li>
-                    <span class="highlight">晚餐 (20:00)：Hell's Kitchen</span>
-                    *待預定
+                <li><span class="highlight">Road Trip!</span>上午 Check-out，開車前往 Vegas (4-5hr)。<br>中途停靠: Mojave National Preserve。</li>
+                <li><span class="highlight">晚上 (18:00 Check-in)</span>Bellagio Fountains (水舞秀) + 室內花園。</li>
+                <li><span class="highlight">晚餐 (20:00)：Hell's Kitchen</span>*待預定
                     <div class="btn-group">
                         <a href="https://maps.app.goo.gl/17A5be35MF6Mjqa6A?g_st=ic" target="_blank" class="btn btn-map">📍 餐廳導航</a>
                         <a href="https://www.opentable.com/booking/restref/availability?rid=992740&dateTime=2026-01-29T19:30&correlationId=a63122a9-39ed-4b7c-8f03-d335039346de" target="_blank" class="btn btn-book">📅 OpenTable 訂位</a>
                     </div>
                 </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    Bellagio Las Vegas
-                </li>
+                <li><span class="highlight">住宿</span>Bellagio Las Vegas</li>
             </ul>
         </div>
 
@@ -405,28 +376,13 @@
             <span class="date-badge">01/28 (三)</span>
             <div class="day-title">Day 7: 購物與賭城風情</div>
             <ul>
-                <li>
-                    <span class="highlight">白天：North Premium Outlets</span>
-                    <div class="btn-group">
-                        <a href="https://maps.app.goo.gl/Nqe7LB9cdFKDkTuu9?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a>
-                    </div>
+                <li><span class="highlight">白天：North Premium Outlets</span>
+                    <div class="btn-group"><a href="https://maps.app.goo.gl/Nqe7LB9cdFKDkTuu9?g_st=ic" target="_blank" class="btn btn-map">📍 導航地圖</a></div>
                 </li>
-                <li>
-                    <span class="highlight">晚上</span>
-                    逛 Strip 大道南段 (New York New York, MGM, Excalibur)。
-                </li>
-                <li>
-                    <span class="highlight">晚餐</span>
-                    Shake Shack
-                </li>
-                <li>
-                    <span class="highlight">大秀 (21:00)</span>
-                    Bellagio 飯店太陽馬戲團 (已訂票)。
-                </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    Bellagio Las Vegas
-                </li>
+                <li><span class="highlight">晚上</span>逛 Strip 大道南段 (New York New York, MGM, Excalibur)。</li>
+                <li><span class="highlight">晚餐</span>Shake Shack</li>
+                <li><span class="highlight">大秀 (21:00)</span>Bellagio 飯店太陽馬戲團 (已訂票)。</li>
+                <li><span class="highlight">住宿</span>Bellagio Las Vegas</li>
             </ul>
         </div>
 
@@ -434,22 +390,10 @@
             <span class="date-badge">01/29 (四)</span>
             <div class="day-title">Day 8: 舊城區與 The Sphere</div>
             <ul>
-                <li>
-                    <span class="highlight">白天</span>
-                    Vegas Sign 拍照 ➝ Fremont Street (舊城區) 天幕秀。
-                </li>
-                <li>
-                    <span class="highlight">晚上 (17:00)：The Sphere show</span>
-                    (已訂票) / ⚠️ 停車場要另外找
-                </li>
-                <li>
-                    <span class="highlight">晚餐</span>
-                    (待定)
-                </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    Bellagio Las Vegas
-                </li>
+                <li><span class="highlight">白天</span>Vegas Sign 拍照 ➝ Fremont Street (舊城區) 天幕秀。</li>
+                <li><span class="highlight">晚上 (17:00)：The Sphere show</span>(已訂票) / ⚠️ 停車場要另外找</li>
+                <li><span class="highlight">晚餐</span>(待定)</li>
+                <li><span class="highlight">住宿</span>Bellagio Las Vegas</li>
             </ul>
         </div>
 
@@ -457,24 +401,10 @@
             <span class="date-badge">01/30 (五)</span>
             <div class="day-title">Day 9: 壯麗大峽谷</div>
             <ul>
-                <li>
-                    <div class="note">
-                        <strong>08:00 準時出發</strong> (車程約 4.5 小時)。<br>
-                        途經 Hoover Dam 拍照。
-                    </div>
-                </li>
-                <li>
-                    <span class="highlight">下午 (14:00)：直昇機導覽</span>
-                    Papillon 直昇機。結束後進大峽谷國家公園，去 Mather Point 看夕陽。
-                </li>
-                <li>
-                    <span class="highlight">晚餐</span>
-                    Grand Canyon Village 內。
-                </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    The Grand Hotel at the Grand Canyon
-                </li>
+                <li><div class="note"><strong>08:00 準時出發</strong> (車程約 4.5 小時)。<br>途經 Hoover Dam 拍照。</div></li>
+                <li><span class="highlight">下午 (14:00)：直昇機導覽</span>Papillon 直昇機。結束後進大峽谷國家公園，去 Mather Point 看夕陽。</li>
+                <li><span class="highlight">晚餐</span>Grand Canyon Village 內。</li>
+                <li><span class="highlight">住宿</span>The Grand Hotel at the Grand Canyon</li>
             </ul>
         </div>
 
@@ -482,22 +412,10 @@
             <span class="date-badge">01/31 (六)</span>
             <div class="day-title">Day 10: 羚羊谷的光影</div>
             <ul>
-                <li>
-                    <span class="highlight">上午</span>
-                    09:30 Check-out ➝ 前往 Page (車程 2.5hr)。
-                </li>
-                <li>
-                    <span class="highlight">下午 (13:10)：羚羊谷導覽</span>
-                    Antelope Canyon + Horseshoe Bend (馬蹄灣)。
-                </li>
-                <li>
-                    <span class="highlight">晚餐：Big John's Texas BBQ</span>
-                    佩吉市著名的德州烤肉。
-                </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    Hyatt Place Page / Lake Powell
-                </li>
+                <li><span class="highlight">上午</span>09:30 Check-out ➝ 前往 Page (車程 2.5hr)。</li>
+                <li><span class="highlight">下午 (13:10)：羚羊谷導覽</span>Antelope Canyon + Horseshoe Bend (馬蹄灣)。</li>
+                <li><span class="highlight">晚餐：Big John's Texas BBQ</span>佩吉市著名的德州烤肉。</li>
+                <li><span class="highlight">住宿</span>Hyatt Place Page / Lake Powell</li>
             </ul>
         </div>
 
@@ -505,30 +423,16 @@
             <span class="date-badge">02/01 (日)</span>
             <div class="day-title">Day 11: 重返拉斯維加斯</div>
             <ul>
-                <li>
-                    <span class="highlight">上午</span>
-                    Check-out，開車返回 Vegas (車程 4.5hr)。
-                </li>
-                <li>
-                    <span class="highlight">午餐</span>
-                    Panda Express (橙汁雞) 或 The Boiling Crab。
-                </li>
-                <li>
-                    <span class="highlight">下午</span>
-                    Check-in Venetian (威尼斯人)，逛運河。
-                </li>
-                <li>
-                    <span class="highlight">晚餐：Peter Luger Steak</span>
-                    *待預定
+                <li><span class="highlight">上午</span>Check-out，開車返回 Vegas (車程 4.5hr)。</li>
+                <li><span class="highlight">午餐</span>Panda Express (橙汁雞) 或 The Boiling Crab。</li>
+                <li><span class="highlight">下午</span>Check-in Venetian (威尼斯人)，逛運河。</li>
+                <li><span class="highlight">晚餐：Peter Luger Steak</span>*待預定
                     <div class="btn-group">
                         <a href="https://maps.app.goo.gl/iFsvfptSakuyjhz89?g_st=ic" target="_blank" class="btn btn-map">📍 餐廳導航</a>
                         <a href="https://www.opentable.com/booking/restref/details?rid=1288636&dateTime=2026-01-29T14:00&correlationId=39cf5b73-01a8-4849-9e1f-295e20c91691" target="_blank" class="btn btn-book">📅 OpenTable 訂位</a>
                     </div>
                 </li>
-                <li>
-                    <span class="highlight">住宿</span>
-                    The Venetian Resort Las Vegas
-                </li>
+                <li><span class="highlight">住宿</span>The Venetian Resort Las Vegas</li>
             </ul>
         </div>
 
@@ -536,25 +440,123 @@
             <span class="date-badge">02/02 (一)</span>
             <div class="day-title">Day 12: 告別美國</div>
             <ul>
-                <li>
-                    <span class="highlight">上午 09:00</span>
-                    Check-out ➝ 前往洛杉磯 (車程 5-6hr，預留塞車)。
-                </li>
-                <li>
-                    <span class="highlight">中途停靠</span>
-                    Calico Ghost Town 或 Peggy Sue's 50's Diner。
-                </li>
-                <li>
-                    <span class="highlight">傍晚</span>
-                    抵達 LAX 附近。可去 Target 超市採買。
-                </li>
-                <li>
-                    <div class="note">
-                        <strong>18:30 還車</strong>，搭接駁車至航廈。<br>
-                        <strong>22:40</strong> 搭乘 CI7 返台。
-                    </div>
-                </li>
+                <li><span class="highlight">上午 09:00</span>Check-out ➝ 前往洛杉磯 (車程 5-6hr，預留塞車)。</li>
+                <li><span class="highlight">中途停靠</span>Calico Ghost Town 或 Peggy Sue's 50's Diner。</li>
+                <li><span class="highlight">傍晚</span>抵達 LAX 附近。可去 Target 超市採買。</li>
+                <li><div class="note"><strong>18:30 還車</strong>，搭接駁車至航廈。<br><strong>22:40</strong> 搭乘 CI7 返台。</div></li>
             </ul>
+        </div>
+
+        <h2 class="tips-section-title">🇺🇸 第一次自駕 & 小費指南</h2>
+
+        <div class="tip-card">
+            <h3>🛑 STOP Sign (停車再開)</h3>
+            <p><strong>最最最重要的規矩！台灣人最容易忽視。</strong>在美國，看到這個牌子一定要 <strong>完全靜止 (Full Stop)</strong>。</p>
+            <ul>
+                <li>✅ <strong>怎麼做：</strong>車輪必須完全停止轉動（心中默數 3 秒），感覺到車子頓了一下，才能再踩油門。</li>
+                <li>🚗 <strong>ALL WAY / 4-WAY STOP (四面八方都要停)：</strong>
+                    <br>規則：「先到的先走」。
+                    <br>如果同時到：「右手邊的車先走」。
+                </li>
+                <li>❌ <strong>千萬不要：</strong>像在台灣一樣慢慢滑過去，或是揮手叫別人先走（這會讓美國人困惑）。</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3>🚦 紅燈可以右轉 (Right Turn on Red)</h3>
+            <p>除非有特別標示，否則美國 <strong>紅燈是可以右轉的</strong>。</p>
+            <ul>
+                <li>✅ <strong>步驟：</strong>遇到紅燈 ➝ 完全停下 ➝ 觀察左方無來車 ➝ 右轉。</li>
+                <li>⚠️ <strong>例外（必看標誌）：</strong>如果路口掛著 <strong style="color:red">NO TURN ON RED</strong> 的白底黑字牌子，就絕對不能轉，必須等綠燈。</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3>💎 HOV / Carpool Lane (高乘載車道)</h3>
+            <p>高速公路最內側車道，地板畫有菱形 (Diamond) ♢ 符號。</p>
+            <ul>
+                <li>✅ <strong>規則：</strong>車上必須有 2人或以上 (部分路段3人) 才能開。你們有 4 個人，這條是你們的神隊友！</li>
+                <li>⚠️ <strong>陷阱：</strong>絕對不能跨越雙黃線進出！必須等到有「虛線」的地方才能切換車道。</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3>🚌 校車 (School Bus) 是帝王</h3>
+            <p>如果在路上看到黃色校車停下來，伸出側邊的紅色 STOP 牌子、閃紅燈。</p>
+            <ul>
+                <li>🛑 <strong>規則：</strong>雙向車道的所有車輛都 <strong>必須立刻停車</strong>。</li>
+                <li>⚠️ <strong>例外：</strong>如果中間有「實體分隔島」，對向車道才不用停。罰金非常重！</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3>🚑 警車 / 救護車 (Pull Over)</h3>
+            <p>只要聽到警笛聲，或者看到後方有閃燈的警車。</p>
+            <ul>
+                <li>✅ <strong>規則：</strong>不管他在哪一條車道，請立刻 <strong>打右轉燈，慢慢靠到最右邊停下來</strong>。</li>
+                <li>👮 <strong>如果警車跟在你後面閃燈：</strong>代表他要攔停你。請停到路肩，雙手放在方向盤上，不要亂動找證件，等警察走過來敲窗戶。</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3>🛣️ 高速公路出口 (Exit Only)</h3>
+            <p>如果你開在最外側車道，看到路牌寫黃底黑字的 "EXIT ONLY"。</p>
+            <ul>
+                <li>ℹ️ <strong>意思：</strong>這條車道 <strong>一定會下交流道</strong>。如果你不想下交流道，請趕快往左切。</li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3>🅿️ 路邊停車顏色 (Curb Colors)</h3>
+            <p>洛杉磯停車抓很嚴，請看人行道邊緣油漆的顏色：</p>
+            <ul style="line-height: 2;">
+                <li><span class="color-tag bg-red"></span><strong>紅色 (Red)：</strong>絕對禁停 (消防通道)。</li>
+                <li><span class="color-tag bg-white"></span><strong>白色 (White)：</strong>僅限臨時上下客 (駕駛不能離開)。</li>
+                <li><span class="color-tag bg-green"></span><strong>綠色 (Green)：</strong>限時停車 (通常寫 15 或 30 min)。</li>
+                <li><span class="color-tag bg-blue"></span><strong>藍色 (Blue)：</strong>身心障礙專用。<span style="color:red; font-weight:bold;">(罰金 $400 起跳，千萬別停！)</span></li>
+            </ul>
+        </div>
+
+        <div class="tip-card">
+            <h3>⛽ 加油小撇步</h3>
+            <ul>
+                <li>💳 <strong>Zip Code 問題：</strong>刷台灣信用卡若要求輸入郵遞區號，試試 <code style="background:#eee; padding:2px;">00000</code> 或 <code style="background:#eee; padding:2px;">99999</code>。</li>
+                <li>🏪 <strong>如果不行的話：</strong>記下加油機號碼 (Pump Number)，直接進商店跟店員說：「Pump 5, 50 dollars, please.」，刷卡後再出來加。</li>
+                <li>⛽ <strong>油種：</strong>通常加 Regular (87) 最便宜的油即可。</li>
+            </ul>
+        </div>
+
+        <div class="alert-box">
+            <h3>🚨 洛杉磯防盜必讀 (重要!)</h3>
+            <p>這不是交通規則，但比交通規則更重要：</p>
+            <p>任何時候離開車子，車內<strong>「完全不要留東西」</strong>！</p>
+            <p>連外套、充電線、墨鏡、空紙袋都不要留。行李箱最好全部放後車廂，且用遮簾蓋住。車窗一旦被打破，處理起來非常麻煩且掃興。</p>
+        </div>
+
+        <div class="tip-card">
+            <h3>💵 小費文化 (Tipping)</h3>
+            <div class="tipping-box">
+                <div class="tipping-item">
+                    <span>🍽️ 餐廳午餐</span>
+                    <strong>15% 以上</strong>
+                </div>
+                <div class="tipping-item">
+                    <span>🍷 餐廳晚餐</span>
+                    <strong>20% 以上</strong>
+                </div>
+                <div class="tipping-item">
+                    <span>🚕 Uber / 計程車</span>
+                    <strong>10 - 15%</strong>
+                </div>
+                <div class="tipping-item">
+                    <span>🧳 飯店行李員</span>
+                    <strong>$1 - $2 / 件</strong>
+                </div>
+                <div class="tipping-item">
+                    <span>🛏️ 飯店房務</span>
+                    <strong>$3 / 晚 (放枕頭旁)</strong>
+                </div>
+            </div>
         </div>
 
     </div>
