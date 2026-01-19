@@ -1,0 +1,381 @@
+ <!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Family US Trip</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 全局設定 --- */
+        :root {
+            --bg-color: #F9F4EF; /* 米白色背景，護眼 */
+            --primary-red: #8B0000; /* 深紅色，經典美式 */
+            --accent-yellow: #DAA520; /* 芥末黃，西皮風點綴 */
+            --text-color: #333333; /* 深灰字體，對比度高 */
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8; /* 加大行距，方便長輩閱讀 */
+            font-size: 18px; /* 基礎字體加大 */
+        }
+
+        /* --- 頁首 Header --- */
+        header {
+            position: relative;
+            height: 60vh;
+            background-image: url('https://images.unsplash.com/photo-1540655037529-dec987208707?q=80&w=2000&auto=format&fit=crop'); /* Hollywood 風景圖 */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* 圖片上的遮罩，讓文字更清楚 */
+        .overlay {
+            background: rgba(139, 0, 0, 0.4); /* 深紅透明遮罩 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            padding: 20px;
+            border: 4px solid var(--accent-yellow); /* 黃色外框 */
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #FFF;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-red);
+            border-bottom: 3px solid var(--accent-yellow);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+
+        /* --- 內容容器 --- */
+        .container {
+            max-width: 800px; /* 限制寬度，閱讀不費力 */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .intro {
+            text-align: center;
+            padding: 40px 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* --- 行程卡片 --- */
+        .day-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px; /* 內部留白加大 */
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--primary-red); /* 左側深紅飾條 */
+            position: relative;
+        }
+
+        .date-badge {
+            background-color: var(--accent-yellow);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .day-title {
+            font-size: 1.6em;
+            color: var(--primary-red);
+            margin: 10px 0 20px 0;
+            font-weight: 700;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent-yellow);
+            font-weight: bold;
+            font-size: 1.5em;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* --- 標籤樣式 (住宿/餐飲) --- */
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+        .tag-food {
+            background-color: #ffe4e1; /* 淺紅底 */
+            color: var(--primary-red);
+            border: 1px solid var(--primary-red);
+        }
+
+        .tag-hotel {
+            background-color: #fff8e1; /* 淺黃底 */
+            color: #8a6d3b;
+            border: 1px solid var(--accent-yellow);
+        }
+
+        .tag-todo {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #2e7d32;
+        }
+
+        a {
+            color: var(--primary-red);
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--primary-red);
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        /* --- 手機版調整 --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .day-card { padding: 20px; }
+            body { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="overlay"></div>
+        <div class="header-content">
+            <h1>Tu Family<br>US Trip</h1>
+            <p style="margin-top:10px; font-size:1.2em;">12 Days Road Trip 2026</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="intro">
+            <p>歡迎來到天使之城洛杉磯與不夜城拉斯維加斯！<br>
+            這是一趟充滿陽光、電影夢與壯麗峽谷的公路之旅。<br>
+            放慢腳步，享受與家人的美好時光。</p>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">01/22 (四)</span>
+            <div class="day-title">Day 1: 抵達與初見洛杉磯</div>
+            <ul>
+                <li><span class="highlight">行程：</span>抵達 ONT 機場 -> 取車 -> 前往 K-Town 飯店 check-in。</li>
+                <li><span class="tag tag-todo">提醒</span>取車事項待確認，出發吃晚餐車程約一小時。</li>
+                <li><span class="tag tag-food">晚餐</span>In-N-Out Burger (必點: Double-Double Animal Style)<br>
+                    <a href="https://maps.app.goo.gl/g35GwZzvbksX3Huz8?g_st=ic" target="_blank">📍 地圖導航</a>
+                </li>
+                <li><span class="tag tag-hotel">住宿</span>Glamorous Ktown Boutique Residence</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">01/23 (五)</span>
+            <div class="day-title">Day 2: 好萊塢環球影城</div>
+            <ul>
+                <li><span class="tag tag-todo">提醒</span>Klook已確認訂票 (10:00-18:00)，預計 08:30 出門。</li>
+                <li><span class="highlight">重點：</span>體驗電影夢工廠的魅力！</li>
+                <li><span class="tag tag-food">晚餐</span>回 K-Town 吃 Sun Nong Dan（無訂位）<br>
+                    <a href="https://maps.app.goo.gl/QQEQPQ8bEMt3rEK89?g_st=ic" target="_blank">📍 地圖導航</a>
+                </li>
+                <li><span class="tag tag-hotel">住宿</span>Glamorous Ktown Boutique Residence</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">01/24 (六)</span>
+            <div class="day-title">Day 3: Downtown LA 探索</div>
+            <ul>
+                <li><span class="highlight">早餐：</span>Republique 早午餐 (8:30開門，需提早排隊)。<br>
+                    <small>*備案: blue jam cafe, the sycamore kitchen</small>
+                </li>
+                <li><span class="highlight">下午：</span>Bradbury Building (最古老建築) + Blue Bottle 咖啡、The Last Bookstore、Santa Monica & Venice beach。</li>
+                <li><span class="tag tag-food">晚餐</span>Water Grill 吃海鮮（無訂位）<br>
+                    <a href="https://maps.app.goo.gl/msCRx51hdUxboZbp8?g_st=ic" target="_blank">📍 地圖導航</a>
+                </li>
+                <li><span class="tag tag-hotel">住宿</span>Glamorous Ktown Boutique Residence</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">01/25 (日)</span>
+            <div class="day-title">Day 4: NBA 朝聖之夜</div>
+            <ul>
+                <li><span class="highlight">上午/午餐：</span>The Original Farmers Market 與 The Grove 購物中心。<br>
+                    (推薦 Pampas Grill 巴西烤肉)</li>
+                <li><span class="highlight">下午：</span>LACMA 洛杉磯郡立美術館 (拍 Urban Light 燈柱森林)。</li>
+                <li><span class="highlight">晚上：</span>Intuit Dome 看球賽 (注意停車與交通)。</li>
+                <li><span class="tag tag-hotel">住宿</span>Glamorous Ktown Boutique Residence</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">01/26 (一)</span>
+            <div class="day-title">Day 5: 移動至好萊塢中心</div>
+            <ul>
+                <li><span class="highlight">上午：</span>Check-out。前往 Beverly Hills 逛精品 (車程約 20 mins)。</li>
+                <li><span class="tag tag-food">午餐</span>California Pizza Kitchen（無訂位）<br>
+                    <a href="https://maps.app.goo.gl/Kmm4urbdkuk2joSr9?g_st=ic" target="_blank">📍 地圖導航</a>
+                </li>
+                <li><span class="highlight">下午：</span>入住 Loews Hollywood。步行至星光大道、中國戲院。傍晚 Griffith Observatory 看夜景。</li>
+                <li><span class="tag tag-food">晚餐</span>Hard Rock Cafe（無訂位）<br>
+                    <a href="https://maps.app.goo.gl/CiAvX3Yq18xGJbUb7?g_st=ic" target="_blank">📍 地圖導航</a>
+                </li>
+                <li><span class="tag tag-hotel">住宿</span>Loews Hollywood Hotel</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">01/27 (二)</span>
+            <div class="day-title">Day 6: 前往拉斯維加斯 (Road Trip!)</div>
+            <ul>
+                <li><span class="highlight">上午：</span>開車前往 Vegas (車程約 4-5 小時)。中途停靠 Mojave National Preserve。</li>
+                <li><span class="highlight">晚上：</span>Check-in Bellagio。欣賞水舞秀與室內花園。</li>
+                <li><span class="tag tag-food">晚餐 20:00</span>Hell's Kitchen (*待預定)<br>
+                    <a href="https://www.opentable.com/booking/restref/availability?rid=992740&dateTime=2026-01-29T19:30&correlationId=a63122a9-39ed-4b7c-8f03-d335039346de" target="_blank">🔗 訂位連結</a>
+                </li>
+                <li><span class="tag tag-hotel">住宿</span>Bellagio Las Vegas</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">01/28 (三)</span>
+            <div class="day-title">Day 7: 購物與賭城風情</div>
+            <ul>
+                <li><span class="highlight">白天：</span>Las Vegas North Premium Outlets。</li>
+                <li><span class="highlight">晚上：</span>逛 Strip 大道南段 (New York New York, MGM)。</li>
+                <li><span class="tag tag-food">晚餐</span>Shake Shack</li>
+                <li><span class="highlight">大秀 21:00：</span>Bellagio 飯店太陽馬戲團 (已訂票)。</li>
+                <li><span class="tag tag-hotel">住宿</span>Bellagio Las Vegas</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">01/29 (四)</span>
+            <div class="day-title">Day 8: 舊城區與 The Sphere</div>
+            <ul>
+                <li><span class="highlight">白天：</span>Welcome to Fabulous Las Vegas Sign 拍照 -> Fremont Street (舊城區) 天幕秀。</li>
+                <li><span class="highlight">晚上 17:00：</span>The Sphere Show (已訂票，需找停車場)。</li>
+                <li><span class="tag tag-food">晚餐</span>(待定)</li>
+                <li><span class="tag tag-hotel">住宿</span>Bellagio Las Vegas</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">01/30 (五)</span>
+            <div class="day-title">Day 9: 壯麗大峽谷</div>
+            <ul>
+                <li><span class="tag tag-todo">出發</span>08:00 準時出發 (車程 4.5hr)。途經 Hoover Dam。</li>
+                <li><span class="highlight">下午 14:00：</span>Papillon 直昇機導覽。之後去 Mather Point 看夕陽。</li>
+                <li><span class="tag tag-food">晚餐</span>Grand Canyon Village 內。</li>
+                <li><span class="tag tag-hotel">住宿</span>The Grand Hotel at the Grand Canyon</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">01/31 (六)</span>
+            <div class="day-title">Day 10: 羚羊谷的光影</div>
+            <ul>
+                <li><span class="highlight">上午：</span>09:30 Check-out -> 前往 Page (車程 2.5hr)。</li>
+                <li><span class="highlight">下午 13:10：</span>Antelope Canyon (羚羊谷) 導覽 + Horseshoe Bend (馬蹄灣)。</li>
+                <li><span class="tag tag-food">晚餐</span>Big John's Texas BBQ (德州烤肉)。</li>
+                <li><span class="tag tag-hotel">住宿</span>Hyatt Place Page / Lake Powell</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">02/01 (日)</span>
+            <div class="day-title">Day 11: 重返拉斯維加斯</div>
+            <ul>
+                <li><span class="highlight">上午：</span>Check-out，開車返回 Vegas (車程 4.5hr)。</li>
+                <li><span class="tag tag-food">午餐</span>Panda Express 或 The Boiling Crab。</li>
+                <li><span class="highlight">下午：</span>入住 Venetian (威尼斯人)，逛 Grand Canal Shoppes。</li>
+                <li><span class="tag tag-food">晚餐</span>Peter Luger Steak (*待預定)<br>
+                     <a href="https://maps.app.goo.gl/iFsvfptSakuyjhz89?g_st=ic" target="_blank">📍 地圖導航</a> | 
+                     <a href="https://www.opentable.com/booking/restref/details?rid=1288636&dateTime=2026-01-29T14:00&correlationId=39cf5b73-01a8-4849-9e1f-295e20c91691" target="_blank">🔗 訂位連結</a>
+                </li>
+                <li><span class="tag tag-hotel">住宿</span>The Venetian Resort Las Vegas</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <span class="date-badge">02/02 (一)</span>
+            <div class="day-title">Day 12: 告別美國</div>
+            <ul>
+                <li><span class="highlight">上午：</span>09:00 Check-out -> 前往 LA (車程 5-6hr，預留塞車)。</li>
+                <li><span class="highlight">中途：</span>Calico Ghost Town 或 Peggy Sue's 50's Diner 午餐。</li>
+                <li><span class="highlight">傍晚：</span>LAX 附近 Target 最後採買。</li>
+                <li><span class="tag tag-todo">18:30</span>還車，搭接駁車至航廈。</li>
+                <li><span class="highlight">22:40：</span>搭乘 CI7 返台。平安回家！</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Tu Family Trip | Wish you a wonderful journey!</p>
+    </footer>
+
+</body>
+</html>
+
+
